@@ -21,8 +21,8 @@ User.count({}, function(err, count) {
 
   if (count > 0) return ;
 
-  const files = require('./file.seed.json');
-  User.create(files, function(err, newFiles) {
+  const user = require('../../mock/users.json');
+  User.create(user, function(err, newFiles) {
     if (err) {
       throw err;
     }
