@@ -6,7 +6,7 @@ const users = require('../../mock/users.json');
 const router = express.Router();
 
 router.get('/users', function (req,res) {
-  res.json({users: users});
+  res.json(users);
 });
 
 //user: Add user to list.
