@@ -24,6 +24,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@angular/cdk": "^2.0.0-beta.12",
     "@angular/common": "~4.3.4",
     "@angular/compiler": "~4.3.4",
     "@angular/core": "~4.3.4",
@@ -33,6 +34,7 @@
     "@angular/platform-browser-dynamic": "~4.3.4",
     "@angular/router": "~4.3.4",
     "angular-in-memory-web-api": "~0.3.0",
+    "body-parser": "^1.18.2",
     "core-js": "^2.4.1",
     "express": "^4.16.2",
     "mongoose": "^4.12.5",

@@ -1,6 +1,7 @@
 
 'use strict';
 const config = require('./config/index');
+const bodyParser = require('body-parser');
 // Load mongoose package
 const mongoose = require('mongoose');
 const express = require('express');
@@ -16,6 +17,7 @@ require('./models/user.model');
 
 app.use('/node_modules', express.static('node_modules'));
 app.use('/', express.static('src'));
+app.use(bodyParser.json());
 app.use('/api', router);
 
 app.listen(config.port, function () {

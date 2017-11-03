@@ -1,9 +1,9 @@
 'use strict';
 
-var express = require('express');
-var users = require('../../mock/users.json');
+const express = require('express');
+const users = require('../../mock/users.json');
 
-var router = express.Router();
+const router = express.Router();
 
 router.get('/users', function (req,res) {
   res.json({users: users});
