@@ -2,10 +2,10 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-  full_name: String,
+  name: String,
   email: String,
   address: String,
-  phone_number: String,
+  phone: Number,
   created_at: { type: Date, default: Date.now },
 });
 

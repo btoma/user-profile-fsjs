@@ -7,9 +7,9 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class UserService {
-  private userUrl = 'http://localhost:3000/api/users';
   constructor(private http: Http) { }
   public getUsers(): Promise<User[]> {
-   return this.http.get(this.userUrl).map(res => res.json()).toPromise();
+    const userUrl = 'http://localhost:3000/api/users';
+   return this.http.get(userUrl).map(res => res.json()).toPromise();
   }
 }

@@ -1,9 +1,22 @@
-
-
 <div>
   <div>
-    <div *ngFor="let user of users">
-      <p>{{user.name}}</p>
+    <div class="user-tabl">
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+        </tr>
+        <tr *ngFor="let user of users">
+          <td>{{user.name}}</td>
+          <td>{{user.address}}</td>
+          <td>{{user.phone}}</td>
+          <td>{{user.email}}</td>
+          <button class="btn" >Edit</button>
+          <button class="btn" >Delete</button>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
