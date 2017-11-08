@@ -21,6 +21,10 @@ import { NguiPopupModule } from '@ngui/popup';
   providers: [
     UserService
   ],
-
+  exports: [
+    UserFormComponent,
+    UserListComponent
+  ],
+  entryComponents: [UserFormComponent]
 })
 export class AppModule { }

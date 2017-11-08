@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../../interface/userInterface";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {User} from '../../interface/userInterface';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',

@@ -1,5 +1,8 @@
 <div>
-  <ngui-popup #popup></ngui-popup>
+  <ngui-popup #popup>
+    <app-user-form></app-user-form>
+  </ngui-popup>
+  <button (click)="openCustomPopup()">CustomPopup</button>
   <div>
     <div class="user-tabl">
       <table>
