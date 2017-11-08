@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {User} from '../../interface/userInterface';
 import {UserService} from '../services/user.service';
+import {NguiPopupComponent } from '@ngui/popup';
 
 @Component({
   selector: 'app-user-list',
@@ -8,6 +9,7 @@ import {UserService} from '../services/user.service';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
+  @ViewChild(NguiPopupComponent) popup: NguiPopupComponent;
   users: User[];
 
   constructor(private userService: UserService) { }

@@ -6,13 +6,15 @@ import {HttpModule} from '@angular/http';
 import {UserService} from './services/user.service';
 import { UserFormComponent } from './user-form/user-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { NguiPopupModule } from '@ngui/popup';
 
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NguiPopupModule
   ],
   declarations: [ AppComponent, UserListComponent, UserFormComponent ],
   bootstrap:    [ AppComponent ],
