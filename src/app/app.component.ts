@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template: ` 
     <main>
       <app-user-list></app-user-list>
+      <app-user-form></app-user-form>
     </main>`,
 })
 export class AppComponent  { name = 'Angular'; }
