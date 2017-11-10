@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {User} from '../../interface/userInterface';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-user-form',
@@ -10,7 +12,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class UserFormComponent implements OnInit {
   user: FormGroup;
 
-  constructor() {
+  constructor(private userService: UserService) {
 
   }
 
@@ -24,7 +26,7 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit({ value, valid }: { value: User, valid: boolean }) {
-    console.log(value, valid);
+    this.userService.create(value).then( res => console.log( res));
 
   }
 

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {User} from '../../interface/userInterface';
 import {UserService} from '../services/user.service';
 import {NguiMessagePopupComponent, NguiPopupComponent} from '@ngui/popup';
@@ -17,38 +17,20 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers().then( (res) => this.users = res);
+
   }
 
-  openPopup() {
-    this.popup.open(NguiMessagePopupComponent, {
-      title: 'My Title',
-      message: 'My Message',
-      buttons: {
-        OK: () => {
-          this.message = 'Ok button is pressed';
-        },
-        CANCEL: () => {
-          this.message = 'Cancel button is pressed';
-          this.popup.close();
-        }
-      }
-    });
-  }
+
   openCustomPopup() {
-    this.popup.open(UserFormComponent, {
+    this.popup.open(UserFormComponent,{
       classNames: 'custom',
       closeButton: true,
-      title: 'My Title',
-      message: 'My Message',
-      buttons: {
-        OK: () => {
-          this.message = 'Ok button is pressed';
-        },
-        CANCEL: () => {
-          this.message = 'Cancel button is pressed';
-          this.popup.close();
-        }
-      }
+
     });
   }
+
+  deleteUser(id) {
+    this.userService.getUsers().then( (res) => this.users = res);
+  }
+
 }

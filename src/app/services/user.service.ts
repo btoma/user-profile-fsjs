@@ -12,4 +12,17 @@ export class UserService {
     const userUrl = 'http://localhost:3000/api/users';
    return this.http.get(userUrl).map(res => res.json()).toPromise();
   }
+
+  public create(data: User): Promise<User> {
+    console.log(data);
+    const url = 'http://localhost:3000/api/user';
+    return this.http.post(url, data).map(res => res.json()).toPromise();
+  }
+
+  public delete(id) {
+    console.log(id);
+    const url = 'http://localhost:3000/api/user';
+    return this.http.post(url, id).map(res => res.json());
+  }
+
 }
