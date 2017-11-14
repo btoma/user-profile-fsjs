@@ -42,8 +42,8 @@
       Phone number required
     </div>
 
-    <button type="submit" *ngIf="!editUserVal" [disabled]="user.invalid">Save User</button>
-    <button type="button" *ngIf="editUserVal" [disabled]="user.invalid" (click)="editUser()">Edit User</button>
+    <button type="submit" [disabled]="user.invalid">Submit</button>
+
   </form>
   <ngui-popup #popup>
 

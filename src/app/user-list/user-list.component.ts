@@ -53,18 +53,20 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  editUser() {
-    const id = this.userSelectedId;
-    this.userService.edit(id).then( () => {
-      console.log('hey');
-    });
-  }
-
   onSubmit({ value, valid }: { value: User, valid: boolean }) {
-    this.userService.create(value).then( () => {
-      this.getUserList();
-      this.popup.close();
-    });
+    if (!this.editUserVal) {
+      console.log('save');
+      this.userService.create(value).then(() => {
+        this.getUserList();
+        this.popup.close();
+      });
+    }else {
+      const id = this.userSelectedId;
+      console.log('edit', id);
+      this.userService.edit(id).then( () => {
+        this.getUserList();
+      });
+    }
   }
 
   deleteUser(id: any) {
