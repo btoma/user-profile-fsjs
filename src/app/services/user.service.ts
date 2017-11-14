@@ -26,8 +26,7 @@ export class UserService {
    */
   public deleteUser(id: number) {
     console.log(id);
-    const url = 'http://localhost:3000/api/user';
-    return this.http.delete(`${url}/${id}`).map(res => res.json()).toPromise();
+    return this.http.delete('http://localhost:3000/api/user/' + id).map(res => res.json());
 
   }
 

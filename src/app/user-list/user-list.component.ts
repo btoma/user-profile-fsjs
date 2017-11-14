@@ -22,7 +22,7 @@ export class UserListComponent implements OnInit {
 
 
   openCustomPopup() {
-    this.popup.open(UserFormComponent,{
+    this.popup.open(UserFormComponent, {
       classNames: 'custom',
       closeButton: true,
 
@@ -30,10 +30,10 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(id: any) {
-    console.log(id);
-    this.userService.deleteUser(id).then(() =>{
+
+    this.userService.deleteUser(id).subscribe(() => {
       this.users = this.users.filter(user => user._id !== id);
-    })
+    });
   }
 
 }

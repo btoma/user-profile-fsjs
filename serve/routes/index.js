@@ -25,6 +25,21 @@ router.post('/user', function(req, res, next) {
   });
 });
 
+//user: edit user on list
+router.delete('/user/:userId', function(req, res, next) {
+  const User = mongoose.model('User');
+  const userId = req.params.userId;
+  console.log(req.params.userId);
+
+  User.findByIdAndRemove(userId, function(err, result) {
+    if (err) {
+      return res.status(500).json({ err: err.message });
+    }
+    res.json({ message: 'Todo Deleted' });
+  });
+});
+
+
 
 router.put('/user/:userId', function(req, res, next) {
   const User = mongoose.model('User');
@@ -47,31 +62,5 @@ router.put('/user/:userId', function(req, res, next) {
 
   })
 });
-
-//user: edit user on list
-
-router.delete('/user/:userId', function(req, res, next) {
-  const User = mongoose.model('User');
-  const userId = req.params.userId;
-  console.log(userId);
-
-  User.findById(userId, function(err, user) {
-    if (err) {
-      console.log(err);
-      return res.status(500).json(err);
-    }
-    if (!user) {
-      return res.status(404).json({message: "User not found"});
-    }
-
-    user.deleted = true;
-
-    user.save(function(err, data) {
-      res.json(data);
-    })
-
-  })
-});
-
 
 module.exports = router;

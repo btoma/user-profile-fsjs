@@ -29,7 +29,7 @@ export class UserFormComponent implements OnInit {
 
   onSubmit({ value, valid }: { value: User, valid: boolean }) {
     this.userService.create(value).then( () => {
-      this.router.navigateByUrl('/users');
+      // this.router.navigateByUrl('/users');
     });
 
   }
