@@ -27,10 +27,10 @@ router.post('/user', function(req, res, next) {
 
 
 router.put('/user/:userId', function(req, res, next) {
-  const File = mongoose.model('User');
+  const User = mongoose.model('User');
   const userId = req.params.userId;
 
-  File.findById(userId, function(err, user) {
+  User.findById(userId, function(err, user) {
     if (err) {
       console.log(err);
       return res.status(500).json(err);
@@ -50,23 +50,24 @@ router.put('/user/:userId', function(req, res, next) {
 
 //user: edit user on list
 
-router.delete('/file/:fileId', function(req, res, next) {
-  const File = mongoose.model('File');
-  const fileId = req.params.fileId;
+router.delete('/user/:userId', function(req, res, next) {
+  const User = mongoose.model('User');
+  const userId = req.params.userId;
+  console.log(userId);
 
-  File.findById(fileId, function(err, file) {
+  User.findById(userId, function(err, user) {
     if (err) {
       console.log(err);
       return res.status(500).json(err);
     }
-    if (!file) {
-      return res.status(404).json({message: "File not found"});
+    if (!user) {
+      return res.status(404).json({message: "User not found"});
     }
 
-    file.deleted = true;
+    user.deleted = true;
 
-    file.save(function(err, doomedFile) {
-      res.json(doomedFile);
+    user.save(function(err, data) {
+      res.json(data);
     })
 
   })

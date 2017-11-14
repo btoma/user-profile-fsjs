@@ -19,10 +19,16 @@ export class UserService {
     return this.http.post(url, data).map(res => res.json()).toPromise();
   }
 
-  public delete(id) {
+  /**
+   *
+   * @param {number} id
+   * @returns {Promise<any>}
+   */
+  public deleteUser(id: number) {
     console.log(id);
     const url = 'http://localhost:3000/api/user';
-    return this.http.post(url, id).map(res => res.json());
+    return this.http.delete(`${url}/${id}`).map(res => res.json()).toPromise();
+
   }
 
 }

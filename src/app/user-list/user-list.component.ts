@@ -29,8 +29,11 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  deleteUser(id) {
-    this.userService.getUsers().then( (res) => this.users = res);
+  deleteUser(id: any) {
+    console.log(id);
+    this.userService.deleteUser(id).then(() =>{
+      this.users = this.users.filter(user => user._id !== id);
+    })
   }
 
 }

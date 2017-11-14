@@ -3,6 +3,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {User} from '../../interface/userInterface';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from "../services/user.service";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-user-form',
@@ -12,7 +14,7 @@ import {UserService} from "../services/user.service";
 export class UserFormComponent implements OnInit {
   user: FormGroup;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
 
   }
 
@@ -26,7 +28,9 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit({ value, valid }: { value: User, valid: boolean }) {
-    this.userService.create(value).then( res => console.log( res));
+    this.userService.create(value).then( () => {
+      this.router.navigateByUrl('/users');
+    });
 
   }
 

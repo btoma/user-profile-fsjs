@@ -17,8 +17,8 @@
           <td>{{user.address}}</td>
           <td>{{user.phone}}</td>
           <td>{{user.email}}</td>
-          <button class="btn"(click)="openCustomPopup(user.id)" >Edit</button>
-          <button class="btn" (click)="deleteUser(user.id)">Delete</button>
+          <button class="btn"(click)="openCustomPopup(user._id)" >Edit</button>
+          <button class="btn" (click)="deleteUser(user._id)">Delete</button>
         </tr>
       </table>
     </div>

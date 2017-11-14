@@ -7,6 +7,7 @@ import {UserService} from './services/user.service';
 import { UserFormComponent } from './user-form/user-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { NguiPopupModule } from '@ngui/popup';
+import {appRoutingProviders, routing} from "./app.router";
 
 
 @NgModule({
@@ -14,12 +15,14 @@ import { NguiPopupModule } from '@ngui/popup';
     BrowserModule,
     HttpModule,
     ReactiveFormsModule,
-    NguiPopupModule
+    NguiPopupModule,
+    routing
   ],
   declarations: [ AppComponent, UserListComponent, UserFormComponent ],
   bootstrap:    [ AppComponent ],
   providers: [
-    UserService
+    UserService,
+    appRoutingProviders
   ],
   exports: [
     UserFormComponent,
