@@ -14,6 +14,8 @@ export class UserListComponent implements OnInit {
   @ViewChild(NguiPopupComponent) popup: NguiPopupComponent;
   users: User[];
   user: FormGroup;
+  editUserVal = false;
+  userSelectedId: number;
 
   constructor(private userService: UserService) {
 
@@ -28,14 +30,16 @@ export class UserListComponent implements OnInit {
     });
     this.getUserList();
   }
+
   selectUser(user: User) {
+    this.editUserVal = true;
+    this.userSelectedId = user._id;
     this.user = new FormGroup({
       name: new FormControl(user.name, [Validators.required, Validators.minLength(2)]),
       email: new FormControl(user.email, Validators.required),
       address: new FormControl(user.address, Validators.required),
       phone: new FormControl(user.phone, Validators.required)
     });
-    this.openCustomPopup();
   }
 
   getUserList() {
@@ -49,8 +53,9 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  editUser(user: User) {
-    this.userService.edit(user).then( () => {
+  editUser() {
+    const id = this.userSelectedId;
+    this.userService.edit(id).then( () => {
       console.log('hey');
     });
   }
