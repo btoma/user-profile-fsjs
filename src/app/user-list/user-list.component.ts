@@ -54,6 +54,7 @@ export class UserListComponent implements OnInit {
   }
 
   onSubmit({ value, valid }: { value: User, valid: boolean }) {
+    console.log("ON SUBMIT", value, valid);
     if (!this.editUserVal) {
       console.log('save');
       this.userService.create(value).then(() => {
@@ -61,9 +62,8 @@ export class UserListComponent implements OnInit {
         this.popup.close();
       });
     }else {
-      const id = this.userSelectedId;
-      console.log('edit', id);
-      this.userService.edit(id).then( () => {
+
+      this.userService.edit(value,this.userSelectedId).then( () => {
         this.getUserList();
       });
     }

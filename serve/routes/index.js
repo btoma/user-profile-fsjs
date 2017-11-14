@@ -44,6 +44,7 @@ router.delete('/user/:userId', function(req, res, next) {
 router.put('/user/:userId', function(req, res, next) {
   const User = mongoose.model('User');
   const userId = req.params.userId;
+  console.log('hey');
 
   User.findById(userId, function(err, user) {
     if (err) {
@@ -54,11 +55,12 @@ router.put('/user/:userId', function(req, res, next) {
       return res.status(404).json({message: "File not found"});
     }
 
-    user = req.body;
-
-    user.save(function(err, savedUser) {
-      res.json(savedUser);
-    })
+    user.update(req.body, function(err, savedUser) {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      return res.json(savedUser);
+    });
 
   })
 });
