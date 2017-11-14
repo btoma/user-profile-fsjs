@@ -1,6 +1,51 @@
 <div>
+  <form (ngSubmit)="onSubmit(user)" [formGroup]="user">
+
+    <label>
+      <span>Full name</span>
+      <input type="text" placeholder="Your full name" formControlName="name" >
+    </label>
+    <div class="error" *ngIf="user.get('name').touched && user.get('name').hasError('required')">
+      Name is required
+    </div>
+    <div class="error" *ngIf="user.get('name').touched && user.get('name').hasError('minlength')">
+      Minimum of 2 characters
+    </div>
+
+    <label>
+      <span>Email address</span>
+      <input type="email" placeholder="Your email address" formControlName="email" >
+    </label>
+    <div
+      class="error"
+      *ngIf="user.get('email').hasError('required') && user.get('email').touched">
+      Email is required
+    </div>
+
+    <label>
+      <span>Address</span>
+      <input type="text" placeholder="Address" formControlName="address" >
+    </label>
+    <div
+      class="error"
+      *ngIf="user.get('address').hasError('required') && user.get('address').touched">
+      Address required
+    </div>
+
+    <label>
+      <span>Phone Number</span>
+      <input type="text" placeholder="Phone Number" formControlName="phone" >
+    </label>
+    <div
+      class="error"
+      *ngIf="user.get('phone').hasError('required') && user.get('phone').touched">
+      Phone number required
+    </div>
+
+    <button type="submit" [disabled]="user.invalid">Submit</button>
+  </form>
   <ngui-popup #popup>
-    <app-user-form></app-user-form>
+
   </ngui-popup>
   <button (click)="openCustomPopup()">CustomPopup</button>
   <div>
@@ -17,7 +62,7 @@
           <td>{{user.address}}</td>
           <td>{{user.phone}}</td>
           <td>{{user.email}}</td>
-          <button class="btn"(click)="openCustomPopup(user._id)" >Edit</button>
+          <button class="btn" (click)="selectUser(user)">Edit</button>
           <button class="btn" (click)="deleteUser(user._id)">Delete</button>
         </tr>
       </table>

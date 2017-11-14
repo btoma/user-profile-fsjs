@@ -19,6 +19,12 @@ export class UserService {
     return this.http.post(url, data).map(res => res.json()).toPromise();
   }
 
+  public edit(user: User): Promise<User> {
+    console.log(user);
+    const url = 'http://localhost:3000/api/user';
+    return this.http.post(url, user).map(res => res.json()).toPromise();
+  }
+
   /**
    *
    * @param {number} id
