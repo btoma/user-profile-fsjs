@@ -1,8 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../../interface/userInterface';
 import {UserService} from '../services/user.service';
-import {NguiPopupComponent} from '@ngui/popup';
-import {UserFormComponent} from '../user-form/user-form.component';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -11,7 +9,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  @ViewChild(NguiPopupComponent) popup: NguiPopupComponent;
+
   users: User[];
   user: FormGroup;
   editUserVal = false;
@@ -22,15 +20,23 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userForm();
+    this.getUserList();
+  }
+
+  userForm(){
     this.user = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       email: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
       phone: new FormControl('', Validators.required)
     });
-    this.getUserList();
   }
 
+  /**
+   * Used for getting user info and id and pass it to from.
+   * @param {User} user
+   */
   selectUser(user: User) {
     this.editUserVal = true;
     this.userSelectedId = user._id;
@@ -42,24 +48,25 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  /**
+   * Getting all users form database.
+   */
   getUserList() {
     this.userService.getUsers().then( (res) => this.users = res);
   }
 
-  openCustomPopup() {
-    this.popup.open(UserFormComponent, {
-      classNames: 'custom',
-      closeButton: true
-    });
-  }
-
+  /**
+   * Saving the user to database.
+   * @param {User} value
+   * @param {boolean} valid
+   */
   onSubmit({ value, valid }: { value: User, valid: boolean }) {
     console.log("ON SUBMIT", value, valid);
     if (!this.editUserVal) {
       console.log('save');
       this.userService.create(value).then(() => {
         this.getUserList();
-        this.popup.close();
+        this.userForm();
       });
     }else {
 
@@ -69,6 +76,10 @@ export class UserListComponent implements OnInit {
     }
   }
 
+  /**
+   * Delete the user from database.
+   * @param id
+   */
   deleteUser(id: any) {
 
     this.userService.deleteUser(id).subscribe(() => {

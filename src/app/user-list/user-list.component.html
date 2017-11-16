@@ -1,71 +1,85 @@
-<div>
-  <form (ngSubmit)="onSubmit(user)" [formGroup]="user">
-    <label>
-      <span>Full name</span>
-      <input type="text" placeholder="Your full name" formControlName="name" >
-    </label>
-    <div class="error" *ngIf="user.get('name').touched && user.get('name').hasError('required')">
-      Name is required
+<div class="container">
+
+  <div class="alert alert-warning form-section" role="alert">
+    <div><h2>Add User To List</h2></div>
+    <div>
+      <form (ngSubmit)="onSubmit(user)" [formGroup]="user" class="form-content">
+        <div class="form-group">
+          <label class="label-section">
+            <span class="col-form-label">Full name</span>
+            <input type="text" placeholder="Your full name" formControlName="name">
+          </label>
+          <div class="error" *ngIf="user.get('name').touched && user.get('name').hasError('required')">
+            Name is required
+          </div>
+          <div class="error" *ngIf="user.get('name').touched && user.get('name').hasError('minlength')">
+            Minimum of 2 characters
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="label-section">
+            <span class="col-form-label">Email address</span>
+            <input type="email" placeholder="Your email address" formControlName="email">
+          </label>
+          <div
+            class="error"
+            *ngIf="user.get('email').hasError('required') && user.get('email').touched">
+            Email is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="label-section">
+            <span class="col-form-label">Address</span>
+            <input type="text" placeholder="Address" formControlName="address">
+          </label>
+          <div
+            class="error"
+            *ngIf="user.get('address').hasError('required') && user.get('address').touched">
+            Address required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="label-section">
+            <span class="col-form-label">Phone Number</span>
+            <input type="text" placeholder="Phone Number" formControlName="phone">
+          </label>
+          <div
+            class="error"
+            *ngIf="user.get('phone').hasError('required') && user.get('phone').touched">
+            Phone number required
+          </div>
+        </div>
+        <button type="submit" class="btn btn-info submit-button" [disabled]="user.invalid">Submit</button>
+      </form>
     </div>
-    <div class="error" *ngIf="user.get('name').touched && user.get('name').hasError('minlength')">
-      Minimum of 2 characters
-    </div>
+  </div>
 
-    <label>
-      <span>Email address</span>
-      <input type="email" placeholder="Your email address" formControlName="email" >
-    </label>
-    <div
-      class="error"
-      *ngIf="user.get('email').hasError('required') && user.get('email').touched">
-      Email is required
-    </div>
-
-    <label>
-      <span>Address</span>
-      <input type="text" placeholder="Address" formControlName="address" >
-    </label>
-    <div
-      class="error"
-      *ngIf="user.get('address').hasError('required') && user.get('address').touched">
-      Address required
-    </div>
-
-    <label>
-      <span>Phone Number</span>
-      <input type="text" placeholder="Phone Number" formControlName="phone" >
-    </label>
-    <div
-      class="error"
-      *ngIf="user.get('phone').hasError('required') && user.get('phone').touched">
-      Phone number required
-    </div>
-
-    <button type="submit" [disabled]="user.invalid">Submit</button>
-
-  </form>
-  <ngui-popup #popup>
-
-  </ngui-popup>
-  <button (click)="openCustomPopup()">CustomPopup</button>
-  <div>
-    <div class="user-tabl">
-      <table>
+  <div class="table-condensed">
+    <table class="border border-secondary table">
+      <thead>
         <tr>
-          <th>Name</th>
-          <th>Address</th>
-          <th>Phone Number</th>
-          <th>Email</th>
+          <th></th>
+          <th scope="col">Name</th>
+          <th scope="col">Address</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Email</th>
+          <th></th>
         </tr>
-        <tr *ngFor="let user of users">
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users" class="row">
           <td>{{user.name}}</td>
           <td>{{user.address}}</td>
           <td>{{user.phone}}</td>
           <td>{{user.email}}</td>
-          <button class="btn" (click)="selectUser(user)">Edit</button>
-          <button class="btn" (click)="deleteUser(user._id)">Delete</button>
+          <td class="button-content">
+          <button type="button" class="btn btn-warning edit-button" (click)="selectUser(user)">Edit</button>
+          <button type="button" class="btn btn-danger delete-button" (click)="deleteUser(user._id)">Delete</button>
+          </td>
         </tr>
-      </table>
-    </div>
+      </tbody>
+    </table>
   </div>
 </div>

@@ -25,7 +25,7 @@
 
 
       // other libraries
-      '@ngui/popup': 'npm:@ngui/popup/dist/popup.umd.js',
+      '@ngui/popup': 'node_modules/@ngui/popup/dist/popup.umd.js',
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-routes/bundles/in-memory-web-routes.umd.js'
     },
